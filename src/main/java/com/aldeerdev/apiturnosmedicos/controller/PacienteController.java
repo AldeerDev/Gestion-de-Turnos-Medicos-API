@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +32,10 @@ public class PacienteController {
 	@PostMapping("/pacientes")
 	public Paciente crearPaciente(@RequestBody Paciente paciente) {
 		return service.crearPaciente(paciente);
+	}
+	
+	@PutMapping("/pacientes/{id}")
+	public Paciente actualizarPaciente(@PathVariable Long id, @RequestBody Paciente paciente) {
+		return service.actualizarPaciente(id, paciente);
 	}
 }

@@ -25,4 +25,14 @@ public class PacienteService {
 	public List<Paciente> listarPacientes() {
 		return repository.findAll();
 	}
+	
+	public Paciente actualizarPaciente(Long id, Paciente paciente) {
+		Paciente actualizado = repository.findById(id).orElse(null);
+		actualizado.setNombre(paciente.getNombre());
+		actualizado.setApellido(paciente.getApellido());
+		actualizado.setEmail(paciente.getEmail());
+		actualizado.setDni(paciente.getDni());
+		actualizado.setFechaNacimiento(paciente.getFechaNacimiento());
+		return repository.save(actualizado);
+	}
 }
