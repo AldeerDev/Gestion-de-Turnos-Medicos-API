@@ -25,4 +25,13 @@ public class MedicoService {
 	public Medico obtenerMedicoPorId(Long id) {
 		return repository.findById(id).orElse(null);
 	}
+	
+	public Medico actualizarMedico(Long id,Medico medico) {
+		Medico actualizado = obtenerMedicoPorId(id);
+		actualizado.setNombre(medico.getNombre());
+		actualizado.setApellido(medico.getApellido());
+		actualizado.setEspecialidad(medico.getEspecialidad());
+		actualizado.setMatricula(medico.getMatricula());
+		return repository.save(actualizado);
+	}
 }

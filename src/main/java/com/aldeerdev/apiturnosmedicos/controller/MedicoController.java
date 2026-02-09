@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,11 @@ public class MedicoController {
 	@PostMapping("/medicos")
 	public Medico crearMedico(@RequestBody Medico medico) {
 		return service.crearMedico(medico);
+	}
+	
+	@PutMapping("/medicos/{id}")
+	public Medico actualizarMedico(@PathVariable Long id, @RequestBody Medico medico) {
+		return service.actualizarMedico(id, medico);
 	}
 
 }
