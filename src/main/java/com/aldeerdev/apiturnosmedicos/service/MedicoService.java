@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aldeerdev.apiturnosmedicos.exception.MedicoNotFoundException;
 import com.aldeerdev.apiturnosmedicos.model.Medico;
 import com.aldeerdev.apiturnosmedicos.repository.MedicoRepository;
 
@@ -23,7 +24,7 @@ public class MedicoService {
 	}
 	
 	public Medico obtenerMedicoPorId(Long id) {
-		return repository.findById(id).orElse(null);
+		return repository.findById(id).orElseThrow(() -> new MedicoNotFoundException(id));
 	}
 	
 	public Medico actualizarMedico(Long id,Medico medico) {
