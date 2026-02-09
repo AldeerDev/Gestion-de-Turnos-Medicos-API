@@ -34,4 +34,10 @@ public class MedicoService {
 		actualizado.setMatricula(medico.getMatricula());
 		return repository.save(actualizado);
 	}
+	
+	public void eliminarMedico(Long id) {
+		Medico bajaMedico = repository.findById(id).orElse(null);
+		bajaMedico.setActivo(false);
+		repository.save(bajaMedico);
+	}
 }
