@@ -12,6 +12,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,7 +32,13 @@ public class Turno {
 
 	@Enumerated(EnumType.STRING)
 	private EstadoTurno estado;
+
+	@ManyToOne
+	@JoinColumn
 	private Paciente paciente;
+
+	@ManyToOne
+	@JoinColumn
 	private Medico medico;
 
 	public Turno() {
