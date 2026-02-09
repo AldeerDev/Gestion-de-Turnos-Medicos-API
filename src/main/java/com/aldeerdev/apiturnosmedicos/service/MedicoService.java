@@ -21,4 +21,8 @@ public class MedicoService {
 	public List<Medico> listarMedicosPorEspecialidad(String especialidad) {
 		return repository.findAll().stream().filter(m -> m.getEspecialidad().equals(especialidad)).toList();
 	}
+	
+	public Medico obtenerMedicoPorId(Long id) {
+		return repository.findById(id).orElse(null);
+	}
 }

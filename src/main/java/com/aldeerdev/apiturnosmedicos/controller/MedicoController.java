@@ -23,6 +23,11 @@ public class MedicoController {
 	public List<Medico> listarMedicosPorEspecialidad(@RequestParam String especialidad) {
 		return service.listarMedicosPorEspecialidad(especialidad);
 	}
+	
+	@GetMapping("/medicos/{id}")
+	public Medico obtenerMedicoPorId(@PathVariable Long id) {
+		return service.obtenerMedicoPorId(id);
+	}
 
 	@PostMapping("/medicos")
 	public Medico crearMedico(@RequestBody Medico medico) {
