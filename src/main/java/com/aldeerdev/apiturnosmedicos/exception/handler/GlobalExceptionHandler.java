@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.aldeerdev.apiturnosmedicos.exception.MedicoNotFoundException;
 import com.aldeerdev.apiturnosmedicos.exception.PacienteNotFoundException;
+import com.aldeerdev.apiturnosmedicos.exception.TurnoEnElPasadoException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -19,5 +20,10 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(MedicoNotFoundException.class)
 	public ResponseEntity<String> handleMedicoNotFound(MedicoNotFoundException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+	}
+	
+	@ExceptionHandler(TurnoEnElPasadoException.class)
+	public ResponseEntity<String> handleTurnoEnElPasado(TurnoEnElPasadoException ex) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
 	}
 }
