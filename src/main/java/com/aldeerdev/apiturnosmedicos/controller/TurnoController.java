@@ -20,8 +20,9 @@ public class TurnoController {
 	private TurnoService service;
 
 	@GetMapping("/turnos")
-	public List<Turno> listar(@RequestParam(required = false ) LocalDate fecha) {
-		return service.listarTurnos(fecha);
+	public List<Turno> listar(@RequestParam(required = false) LocalDate fecha,
+			@RequestParam(required = false) Long idMedico) {
+		return service.listarTurnos(fecha, idMedico);
 	}
 
 	@PostMapping("/turnos")

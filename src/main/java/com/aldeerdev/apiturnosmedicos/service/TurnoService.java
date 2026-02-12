@@ -3,6 +3,7 @@ package com.aldeerdev.apiturnosmedicos.service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,11 +59,19 @@ public class TurnoService {
 		return turnoRep.save(turno);
 	}
 
-	public List<Turno> listarTurnos(LocalDate fecha) {
-		if (fecha == null) {
-			return turnoRep.findAll();
+	public List<Turno> listarTurnos(LocalDate fecha, Long idMedico) {
+
+		Stream<Turno> turnos = turnoRep.findAll().stream();
+		
+		if (fecha != null) {
+			turnos = turnos.filter(t -> t.getFecha().equals(fecha));
 		}
-		return turnoRep.findAll().stream().filter(t -> t.getFecha().equals(fecha)).toList();
+		
+		if (idMedico != null) {
+			turnos = turnos.filter(t -> t.getMedico().getId().equals(idMedico));
+		}
+		
+		return turnos.toList();
 	}
 
 	private void validarMedicoDisponible(Medico medico, LocalDate fecha, LocalTime hora) {
