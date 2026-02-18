@@ -24,7 +24,7 @@ public class MedicoController {
 	private MedicoService service;
 
 	@GetMapping("/medicos")
-	public List<Medico> listarMedicosPorEspecialidad(@RequestParam String especialidad) {
+	public List<MedicoResponseDTO> listarMedicosPorEspecialidad(@RequestParam String especialidad) {
 		return service.listarMedicosPorEspecialidad(especialidad);
 	}
 	
