@@ -40,13 +40,14 @@ public class MedicoService {
 		}).orElseThrow(() -> new MedicoNotFoundException(id));
 	}
 
-	public Medico actualizarMedico(Long id, Medico medico) {
-		Medico actualizado = obtenerMedicoPorId(id);
-		actualizado.setNombre(medico.getNombre());
-		actualizado.setApellido(medico.getApellido());
-		actualizado.setEspecialidad(medico.getEspecialidad());
-		actualizado.setMatricula(medico.getMatricula());
-		return repository.save(actualizado);
+	public MedicoResponseDTO actualizarMedico(Long id, MedicoRequestDTO dto) {
+		Medico actualizado = obtenerEntidadPorId(id);
+		actualizado.setNombre(dto.getNombre());
+		actualizado.setApellido(dto.getApellido());
+		actualizado.setEspecialidad(dto.getEspecialidad());
+		actualizado.setMatricula(dto.getMatricula());
+		repository.save(actualizado);
+		return MedicoMapper.toDTO(actualizado);
 	}
 
 	public void eliminarMedico(Long id) {
