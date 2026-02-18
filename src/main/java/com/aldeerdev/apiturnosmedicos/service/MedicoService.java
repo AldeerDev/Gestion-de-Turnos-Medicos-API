@@ -27,8 +27,7 @@ public class MedicoService {
 
 	public List<MedicoResponseDTO> listarMedicosPorEspecialidad(String especialidad) {
 		return repository.findAll().stream().filter(m -> m.getEspecialidad().equals(especialidad))
-				.map(MedicoMapper::toDTO)
-				.toList();
+				.map(MedicoMapper::toDTO).toList();
 	}
 
 	public MedicoResponseDTO obtenerMedicoPorId(Long id) {
@@ -54,10 +53,9 @@ public class MedicoService {
 		bajaMedico.setActivo(false);
 		repository.save(bajaMedico);
 	}
-	
-	// metodos privados
-	
-	private Medico obtenerEntidadPorId(Long id) {
+
+	// package-private
+	Medico obtenerEntidadPorId(Long id) {
 		return repository.findById(id).orElseThrow(() -> new MedicoNotFoundException(id));
 	}
 }
