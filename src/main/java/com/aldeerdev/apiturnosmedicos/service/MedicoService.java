@@ -32,12 +32,11 @@ public class MedicoService {
 	}
 
 	public MedicoResponseDTO obtenerMedicoPorId(Long id) {
-		return repository.findById(id).map(medico -> {
-			if (!medico.isActivo()) {
-				throw new MedicoInactivoException();
-			}
-			return MedicoMapper.toDTO(medico);
-		}).orElseThrow(() -> new MedicoNotFoundException(id));
+		Medico medico = obtenerEntidadPorId(id);
+		if (!medico.isActivo()) {
+			throw new MedicoInactivoException();
+		}
+		return MedicoMapper.toDTO(medico);
 	}
 
 	public MedicoResponseDTO actualizarMedico(Long id, MedicoRequestDTO dto) {
