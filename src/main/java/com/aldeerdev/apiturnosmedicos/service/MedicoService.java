@@ -31,12 +31,12 @@ public class MedicoService {
 				.toList();
 	}
 
-	public Medico obtenerMedicoPorId(Long id) {
+	public MedicoResponseDTO obtenerMedicoPorId(Long id) {
 		return repository.findById(id).map(medico -> {
 			if (!medico.isActivo()) {
 				throw new MedicoInactivoException();
 			}
-			return medico;
+			return MedicoMapper.toDTO(medico);
 		}).orElseThrow(() -> new MedicoNotFoundException(id));
 	}
 
