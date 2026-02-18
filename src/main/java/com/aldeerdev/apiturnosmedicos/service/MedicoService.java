@@ -54,4 +54,10 @@ public class MedicoService {
 		bajaMedico.setActivo(false);
 		repository.save(bajaMedico);
 	}
+	
+	// metodos privados
+	
+	private Medico obtenerEntidadPorId(Long id) {
+		return repository.findById(id).orElseThrow(() -> new MedicoNotFoundException(id));
+	}
 }
