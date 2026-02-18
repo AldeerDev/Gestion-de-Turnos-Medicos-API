@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aldeerdev.apiturnosmedicos.dto.medico.MedicoRequestDTO;
@@ -23,8 +22,8 @@ public class MedicoController {
 	@Autowired
 	private MedicoService service;
 
-	@GetMapping("/medicos")
-	public List<MedicoResponseDTO> listarMedicosPorEspecialidad(@RequestParam String especialidad) {
+	@GetMapping("/medicos/especialidad/{especialidad}")
+	public List<MedicoResponseDTO> listarMedicosPorEspecialidad(@PathVariable String especialidad) {
 		return service.listarMedicosPorEspecialidad(especialidad);
 	}
 	
